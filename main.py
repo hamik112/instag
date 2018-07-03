@@ -12,8 +12,8 @@ top_posts = '_9AhH0'
 # open chrome headless
 op = wd.ChromeOptions()
 op.add_argument('headless')
-# b = wd.Chrome(chrome_options=op)
-b = wd.Chrome()
+b = wd.Chrome(chrome_options=op)
+# b = wd.Chrome()
 
 # adjust these params
 search_list = ['nycspc','magnumphotos','wearethestreet','storyofthestreet']
@@ -27,7 +27,7 @@ for s in range(search_len):
 	time.sleep(3)
 
 	# close login prompt
-	if (len(search_list)==1):
+	if (s==0):
 		b.find_elements_by_class_name('Ls00D')[0].click()
 
 	# get posts
@@ -64,7 +64,9 @@ for s in range(search_len):
 		next_search_idx = next_search_idx+1
 	search_list.append(most_common_tags[next_search_idx][0][1:])
 
-print(zip(*Counter(tag_list).most_common(30))[0])
+# get the 30 most used tags
+top_tags = zip(*Counter(tag_list).most_common(30))[0]
+print(" ".join(top_tags))
 b.close()
 	# if __name__ == "__main__":
 # 	main();

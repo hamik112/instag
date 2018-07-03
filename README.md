@@ -17,3 +17,6 @@ Then run with:
 ```
 python main.py
 ```
+
+# TODO
+* Ignore posts already used - keep track of image IDs
